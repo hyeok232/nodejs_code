@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투자 선호 설문조사</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>투자 선호 설문조사</h1>
+    <form action="/api/propensity/submit" method="POST">
+        <div>
+
+            <!-- Q1 -->
+            <label for="question1">
+                손실이 예상되더라도 수익이 높은 투자를 선호한다.
+            </label>
+            <div>
+                <input type="radio" id="yes1" name="question1" value="예" required>
+                <label for="yes1">예</label>
+            </div>
+            <div>
+                <input type="radio" id="no1" name="question1" value="아니오" required>
+                <label for="no1">아니오</label>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div>
+            <label for="question2">
+                주식시장이 떨어지면 오히려 좋은 기회라고 생각해서 주식을 더 매수한다.
+            </label>
+            <div>
+                <input type="radio" id="yes2" name="question2" value="예" required>
+                <label for="yes2">예</label>
+            </div>
+            <div>
+                <input type="radio" id="no2" name="question2" value="아니오" required>
+                <label for="no2">아니오</label>
+            </div>
+        </div>
+
+
+
+        <!-- Q5 -->
+        <div>
+            <label for="question5">
+                정보를 최대한 수집하여 투자결정한다.
+            </label>
+            <div>
+                <input type="radio" id="yes5" name="question5" value="예" required>
+                <label for="yes5">예</label>
+            </div>
+            <div>
+                <input type="radio" id="no5" name="question5" value="아니오" required>
+                <label for="no5">아니오</label>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div>
+            <label for="question6">
+                금리변동이나 환율 등 주가변동에 미치는 위험요소에 민감하다.
+            </label>
+            <div>
+                <input type="radio" id="yes6" name="question6" value="예" required>
+                <label for="yes6">예</label>
+            </div>
+            <div>
+                <input type="radio" id="no6" name="question6" value="아니오" required>
+                <label for="no6">아니오</label>
+            </div>
+        </div>
+
+        <!-- Q9 -->
+        <div>
+            <label for="question9">
+                이익이 높더라도 투자방법이 위험하면 그 방법을 선택하지 않는다.
+            </label>
+            <div>
+                <input type="radio" id="yes9" name="question9" value="예" required>
+                <label for="yes9">예</label>
+            </div>
+            <div>
+                <input type="radio" id="no9" name="question9" value="아니오" required>
+                <label for="no9">아니오</label>
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div>
+            <label for="question10">
+                종목이 정해지면 미수를 내서라도 매수하는 편이다.
+            </label>
+            <div>
+                <input type="radio" id="yes10" name="question10" value="예" required>
+                <label for="yes10">예</label>
+            </div>
+            <div>
+                <input type="radio" id="no10" name="question10" value="아니오" required>
+                <label for="no10">아니오</label>
+            </div>
+        </div>
+ 
+        <button type="submit">제출</button>
+    </form>
+</body>
+</html>

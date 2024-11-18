@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종목 숫자 입력</title>
+</head>
+<body>
+    <h1>Count 값을 입력하세요</h1>
+    <form action="/api/count/submit" method="POST">
+        <label for="count">Count:</label>
+        <input type="number" id="count" name="count" min="1" required>
+        <button type="submit">제출</button>
+    </form>
+</body>
+</html>

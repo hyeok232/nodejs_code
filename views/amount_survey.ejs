@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투자 금액 입력</title>
+</head>
+<body>
+    <h1>Amount 값을 입력하세요</h1>
+    <form action="/api/amount/submit" method="POST">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" min="1" required>
+        <button type="submit">제출</button>
+    </form>
+</body>
+</html>
