@@ -182,10 +182,10 @@ const surveyWeight = (req, res) => {
   );
   req.session.dominantTrait = dominantTrait;
   console.log("가장 높은 성향:", req.session.dominantTrait);
-  res.send(`가장 높은 성향은 ${dominantTrait}입니다.`);
+  res.json({
+    dominantTrait: req.session.dominantTrait,
+  });
 };
-
-// dadf
 
 module.exports = {
   surveyWeight,
