@@ -3,25 +3,25 @@ const express = require("express");
 const amountRouter = express.Router();
 const amountcontroller = require("../controllers/amountContoller");
 
-/**
- * @swagger
- * /api/amount:
- *   get:
- *     summary: Render the amount survey page
- *     description: Renders the EJS view for the amount survey.
- *     tags:
- *       - Amount
- *     responses:
- *       200:
- *         description: Successfully rendered the amount survey page
- *         content:
- *           text/html:
- *             schema:
- *               type: string
- */
-amountRouter.get("/", (req, res) => {
-  res.render("amount_survey"); // 테스트용 ejs
-});
+// /**
+//  * @swagger
+//  * /api/amount:
+//  *   get:
+//  *     summary: Render the amount survey page
+//  *     description: Renders the EJS view for the amount survey.
+//  *     tags:
+//  *       - Amount
+//  *     responses:
+//  *       200:
+//  *         description: Successfully rendered the amount survey page
+//  *         content:
+//  *           text/html:
+//  *             schema:
+//  *               type: string
+//  */
+// amountRouter.get("/", (req, res) => {
+//   res.render("amount_survey"); // 테스트용 ejs
+// });
 
 /**
  * @swagger
