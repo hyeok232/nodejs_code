@@ -15,7 +15,7 @@ const getSurveyData = async (req, res) => {
   } = req.body;
 
   // 21개 질문 데이터 저장
-  const dominantTrait = calculateDominantTrait(surveyAnswers);
+  const { dominantTrait, traits } = calculateDominantTrait(surveyAnswers);
 
   const rankedMetrics = createRankedMetrics(companyValuesRanks);
 
@@ -39,8 +39,9 @@ const getSurveyData = async (req, res) => {
     stockPrices
   );
 
-  const limitedPurchasePlan = stockPurchasePlan.map((plan) => ({
-    stockPurchaseDetails: Object.entries(plan.stockPurchaseDetails)
+  const limitedPurchasePlan = stockPurchasePlan.map((plan) => {
+    // 중첩 구조 제거
+    return Object.entries(plan.stockPurchaseDetails)
       .filter(([_, details]) => details.shares > 0)
       .slice(0, parseInt(count))
       .map(([stockName, details]) => ({
@@ -48,9 +49,17 @@ const getSurveyData = async (req, res) => {
         price: details.price,
         shares: details.shares,
         totalCost: details.totalCost,
-      })),
-  }));
-  res.json(limitedPurchasePlan);
+      }));
+  });
+
+  // 응답 구조 평면화
+  const result = {
+    stockPurchaseDetails: limitedPurchasePlan[0], // 첫 번째 플랜 선택
+    traits: traits,
+  };
+
+  console.log(result);
+  res.json(result);
 };
 
 module.exports = {
@@ -238,7 +247,7 @@ function calculateDominantTrait(surveyAnswers) {
     traits[a] > traits[b] ? a : b
   );
 
-  return dominantTrait;
+  return { dominantTrait, traits };
 }
 
 function createRankedMetrics(companyValuesRanks) {
