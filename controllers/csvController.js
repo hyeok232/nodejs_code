@@ -47,11 +47,6 @@ const loadCsvData = async (surveyResult) => {
   return results;
 };
 
-// function isValidSurveyResult(surveyResult) {
-//     const validResults = ['safety', 'analysis', 'profits', 'obsession'];
-//     return validResults.includes(surveyResult);
-// }
-
 // 원하는 개수만큼 종목 가져오기 (가중치 적용)
 const selectStocks = async (req, res) => {
   const surveyResult = req.session.dominantTrait;
@@ -276,15 +271,6 @@ function calculateMaxStocks(simulationResults, investmentAmount, stockPrices) {
   });
 }
 
-function getCurrentDate() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1 필요
-  const day = String(date.getDate()).padStart(2, "0");
-
-  return `${year}${month}${day}`;
-}
-
 // 원하는 개수만큼 종목 가져오기 (가중치 적용 후 종목 추천 및 투자 계획 수립)
 const purchaseStocks = async (req, res) => {
   if (!req.session || !req.session.dominantTrait) {
@@ -294,7 +280,6 @@ const purchaseStocks = async (req, res) => {
   }
   const count = req.session.count;
   const amount = req.session.amount;
-  // const basDt =getCurrentDate();
   const basDt = "20241108";
 
   if (!count || !amount || !basDt) {
@@ -332,53 +317,6 @@ const purchaseStocks = async (req, res) => {
   }));
   res.json(limitedPurchasePlan);
 };
-
-function getTopStocks(filteredStocks, count) {
-  if (!Array.isArray(filteredStocks) || filteredStocks.length === 0) {
-    throw new Error("Invalid stock data.");
-  }
-
-  if (typeof count !== "number" || count <= 0) {
-    throw new Error("Count must be a positive number.");
-  }
-
-  // 요청된 count가 데이터 길이보다 크면 전체 데이터 반환
-  return filteredStocks.slice(0, Math.min(count, filteredStocks.length));
-}
-
-function calculateMaximumPurchased(topStocks, amount) {
-  if (!Array.isArray(topStocks) || topStocks.length === 0) {
-    throw new Error("No stocks available.");
-  }
-
-  if (typeof amount !== "number" || amount <= 0) {
-    throw new Error("Amount must be a positive number.");
-  }
-
-  const purchased = [];
-
-  for (const stock of topStocks) {
-    if (amount <= 0) break;
-
-    const price = parseFloat(stock["배당수익률"]); // 배당수익률
-    if (isNaN(price) || price <= 0) {
-      console.warn("Invalid stock price for stock: " + stock["Name"]);
-      continue; // 유효하지 않은 가격은 건너뜀
-    }
-
-    const maxShares = Math.floor(amount / price);
-    if (maxShares > 0) {
-      purchased.push({
-        name: stock["Name"],
-        shares: maxShares,
-        price: price,
-      });
-      amount -= maxShares * price;
-    }
-  }
-
-  return purchased;
-}
 
 module.exports = {
   loadCsv,

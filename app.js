@@ -7,6 +7,7 @@ const propensityRoute = require("./routes/propensityRoute");
 const statementsRoute = require("./routes/statementsRoute");
 const countRoute = require("./routes/countRoute");
 const amountRoute = require("./routes/amountRoute");
+const createPortfolioRoute = require("./routes/createPortfolioRoute");
 
 const { swaggerUi, specs } = require("./swagger/swagger");
 
@@ -37,11 +38,8 @@ app.use("/api/csv", csvRoute);
 app.use("/api/count", countRoute);
 app.use("/api/amount", amountRoute);
 
+app.use("/api/create-portfolio", createPortfolioRoute);
+
 app.listen(PORT, () => {
   console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
 });
-
-// 서버 확인용
-// app.get("/", (req, res) =>{
-//     res.send("Hello, world!");
-// });
