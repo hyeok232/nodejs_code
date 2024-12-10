@@ -23,7 +23,7 @@ const getSurveyData = async (req, res) => {
 
   const amount = investmentAmount;
 
-  const basDt = "20241108";
+  const basDt = "20241210";
 
   const topStocks = await selectStocks(dominantTrait, count, rankedMetrics);
   const stockPrices = await getStockPricesFromApi(topStocks, basDt);

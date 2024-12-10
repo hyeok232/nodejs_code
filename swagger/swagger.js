@@ -11,7 +11,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000", // API 서버의 URL로 변경
+        url: "https://port-0-nodejs-code-m3n1flsr1f4f9ad0.sel4.cloudtype.app", // API 서버의 URL로 변경
       },
     ],
   },
